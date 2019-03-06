@@ -40,72 +40,72 @@ const game = new Vue({
     easy: [
       {
         id: 1,
-        imgFront: "/img/html.svg",
+        imgFront: "img/html.svg",
         altFront: "HTML Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 2,
-        imgFront: "/img/html.svg",
+        imgFront: "img/html.svg",
         altFront: "HTML Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 3,
-        imgFront: "/img/css.svg",
+        imgFront: "img/css.svg",
         altFront: "CSS Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 4,
-        imgFront: "/img/css.svg",
+        imgFront: "img/css.svg",
         altFront: "CSS Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 5,
-        imgFront: "/img/js.svg",
+        imgFront: "img/js.svg",
         altFront: "Javascript Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 6,
-        imgFront: "/img/js.svg",
+        imgFront: "img/js.svg",
         altFront: "Javascript Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 7,
-        imgFront: "/img/php.svg",
+        imgFront: "img/php.svg",
         altFront: "PHP Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
       },
       {
         id: 8,
-        imgFront: "/img/php.svg",
+        imgFront: "img/php.svg",
         altFront: "PHP Logo",
-        imgBack: "/img/code.svg",
+        imgBack: "img/code.svg",
         altBack: "Code Brackets",
         flipped: false,
         locked: false
