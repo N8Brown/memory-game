@@ -9,12 +9,8 @@
 </head>
 <body>
   <div id="game">
-    <div class="card-easy" v-for="card in easy" v-bind:key="card.id" v-on:click="flipCard">
-      <img class="card-front" v-bind:class="{flip: !isActive}"  v-bind:src="card.imgFront" v-bind:alt="card.altFront">
-      <img class="card-back" v-bind:class="{flip: isActive}" v-bind:src="card.imgBack" v-bind:alt="card.altBack">
-    </div>
+    <card-easy v-for="card in easy" v-bind:card="card" v-bind:key="card.id" ></card-easy>
   </div>
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="/index.js"></script>
