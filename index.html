@@ -4,12 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="index.css">
   <title>Memory Game</title>
 </head>
 <body>
   <div id="game">
-    <card-easy v-for="card in easy" v-bind:card="card" v-bind:key="card.id" ></card-easy>
+    <div class="options">
+      <label for="difficulty">Difficulty</label>
+      <select name="difficulty" id="difficulty" v-model="selectedLevel">
+       <option v-for="option in levels" v-bind:value="option.value">
+            {{ option.text }}
+       </option>
+      </select>
+    </div>
+    <div id="game-board" :class="selectedLevel">
+      <card-easy v-for="card in filteredCards" :card="card" :key="card.id" ></card-easy>
+    </div>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
