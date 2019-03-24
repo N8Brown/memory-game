@@ -1,9 +1,31 @@
+const checkMatch = () => {
+  if(game.flippedCards.length === 2){
+    if(game.flippedCards[0].id !== game.flippedCards[1].id && game.flippedCards[0].front === game.flippedCards[1].front){
+      console.log("Match");
+      game.flippedCards[0].locked = true;
+      game.flippedCards[1].locked = true;
+      game.flippedCards = [];
+    } else {
+      console.log("Not a match");
+      setTimeout(function(){
+        game.flippedCards[0].flipped = false;
+        game.flippedCards[1].flipped = false;
+        game.flippedCards = [];
+      }, 1000);
+    }
+  }
+}
+
 Vue.component("card-easy", {
   props: ['card'],
   template: `
-    <div class="card-easy" v-bind:id="card.id" v-on:click="flipCard">
-      <img class="card-front" v-bind:src="card.imgFront" v-bind:alt="card.altFront" v-bind:class="{flip: !this.card.flipped}"/>
-      <img class="card-back" v-bind:src="card.imgBack" v-bind:alt="card.altBack" v-bind:class="{flip: this.card.flipped}"/>
+    <div class="card" :id="card.id" @click="flipCard">
+      <div class="card-front" :class="{flip: !this.card.flipped}">
+        <i :class="card.front"></i>
+      </div>
+      <div class="card-back" :class="{flip: this.card.flipped}">
+        <i :class="card.back"></i>
+      </div>
     </div>
   `,
   methods:{
@@ -12,104 +34,271 @@ Vue.component("card-easy", {
         this.card.flipped = !this.card.flipped;
         game.flippedCards.push(this.card);
         console.log(this.card.id, this.card.altFront, this.card.flipped);
-        this.checkMatch();
+        checkMatch();
       }
     },
-    checkMatch: function(){
-      if(game.flippedCards.length === 2){
-        if(game.flippedCards[0].altFront === game.flippedCards[1].altFront){
-          console.log("Match");
-          game.flippedCards[0].locked = true;
-          game.flippedCards[1].locked = true;
-        } else {
-          console.log("Not a match");
-          game.flippedCards[0].flipped = false;
-          game.flippedCards[1].flipped = false;  
-        }
-        game.flippedCards = [];
-      }
-    }
   }
 });
 
 const game = new Vue({
   el: "#game",
   data: {
+    selectedLevel: "",
+    levels: [
+      {text: "Easy", value: "easy"},
+      {text: "Medium", value: "medium"},
+      {text: "Hard", value: "hard"}
+    ],
     moves: 0,
     flippedCards: [],
-    easy: [
+    cards: [
       {
         id: 1,
-        imgFront: "img/html.svg",
-        altFront: "HTML Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-html5",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 2,
-        imgFront: "img/html.svg",
-        altFront: "HTML Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-html5",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 3,
-        imgFront: "img/css.svg",
-        altFront: "CSS Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-css3-alt",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 4,
-        imgFront: "img/css.svg",
-        altFront: "CSS Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-css3-alt",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 5,
-        imgFront: "img/js.svg",
-        altFront: "Javascript Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-js-square",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 6,
-        imgFront: "img/js.svg",
-        altFront: "Javascript Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-js-square",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 7,
-        imgFront: "img/php.svg",
-        altFront: "PHP Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-php",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
       },
       {
         id: 8,
-        imgFront: "img/php.svg",
-        altFront: "PHP Logo",
-        imgBack: "img/code.svg",
-        altBack: "Code Brackets",
+        front: "fab fa-php",
+        back: "fas fa-code",
         flipped: false,
-        locked: false
-      }
+        locked: false,
+        easy: true,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 9,
+        front: "fab fa-angular",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 10,
+        front: "fab fa-angular",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 11,
+        front: "fab fa-react",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 12,
+        front: "fab fa-react",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 13,
+        front: "fab fa-vuejs",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 14,
+        front: "fab fa-vuejs",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 15,
+        front: "fab fa-node",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 16,
+        front: "fab fa-node",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: true,
+        hard: true,
+      },
+      {
+        id: 17,
+        front: "fab fa-sass",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 18,
+        front: "fab fa-sass",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 19,
+        front: "fab fa-python",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 20,
+        front: "fab fa-python",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 21,
+        front: "fab fa-npm",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 22,
+        front: "fab fa-npm",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 23,
+        front: "fab fa-drupal",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
+      {
+        id: 24,
+        front: "fab fa-drupal",
+        back: "fas fa-code",
+        flipped: false,
+        locked: false,
+        easy: false,
+        medium: false,
+        hard: true,
+      },
     ]
   },
+  computed: {
+    filteredCards: function(){
+      return this.cards.filter(card => {
+        return (card[this.selectedLevel]);
+      });
+    }
+  }
 });

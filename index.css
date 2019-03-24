@@ -7,10 +7,29 @@
 body {
   height: 100vh;
   display: flex;
+  color: rgb(53, 73, 94);
+}
 
+i {
+  font-size: 4rem;
 }
 
 #game {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* #game {
+  height: 640px;
+  width: 640px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+} */
+.game-board {
   height: 640px;
   width: 640px;
   margin: auto;
@@ -19,7 +38,7 @@ body {
   align-items: center;
 }
 
-.card-easy{
+.card{
   width: calc(25% - 10px);
   height: calc(40% - 10px);
   margin: 5px;
@@ -33,7 +52,7 @@ body {
   padding: 20px;
   position: absolute;
   border-radius: 5px;
-  background: lightblue;
+  background: rgb(65, 184, 131);
   backface-visibility: hidden;
 }
 
