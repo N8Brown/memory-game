@@ -11,7 +11,7 @@
 <body>
   <div id="game">
     <div class="options">
-      <label for="difficulty">Difficulty</label>
+      <label for="difficulty">Difficulty: </label>
       <select name="difficulty" id="difficulty" v-model="selectedLevel">
        <option v-for="option in levels" v-bind:value="option.value">
             {{ option.text }}
