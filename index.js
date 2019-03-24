@@ -14,7 +14,7 @@ const checkMatch = () => {
       }, 1000);
     }
   }
-}
+};
 
 Vue.component("card-easy", {
   props: ['card'],
@@ -296,9 +296,26 @@ const game = new Vue({
   },
   computed: {
     filteredCards: function(){
+      this.shuffleCards();
       return this.cards.filter(card => {
         return (card[this.selectedLevel]);
       });
+    }
+  },
+  methods: {
+    shuffleCards: function(){
+      let ctr = this.cards.length;
+      let index;
+      let temp;
+
+      while(ctr > 0){
+        index = Math.floor(Math.random() * ctr);
+        ctr--;
+        temp = this.cards[ctr];
+        this.cards[ctr] = this.cards[index];
+        this.cards[index] = temp;
+      }
+      return this.cards;
     }
   }
 });
