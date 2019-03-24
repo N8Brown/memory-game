@@ -11,14 +11,15 @@
 <body>
   <div id="game">
     <div class="options">
-      <select id="difficulty" v-model="selectedLevel">
+      <label for="difficulty">Difficulty</label>
+      <select name="difficulty" id="difficulty" v-model="selectedLevel">
        <option v-for="option in levels" v-bind:value="option.value">
             {{ option.text }}
        </option>
       </select>
     </div>
-    <div class="game-board">
-      <card-easy v-for="card in filteredCards" v-bind:card="card" v-bind:key="card.id" ></card-easy>
+    <div id="game-board" :class="selectedLevel">
+      <card-easy v-for="card in filteredCards" :card="card" :key="card.id" ></card-easy>
     </div>
   </div>
 </body>
