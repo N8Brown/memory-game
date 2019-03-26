@@ -1,27 +1,7 @@
-const checkMatch = () => {
-  if(game.flippedCards.length === 2){
-    if(game.flippedCards[0].id !== game.flippedCards[1].id && game.flippedCards[0].front === game.flippedCards[1].front){
-      console.log("Match");
-      game.flippedCards[0].locked = true;
-      game.flippedCards[1].locked = true;
-      game.flippedCards = [];
-      game.guesses++;
-    } else {
-      console.log("Not a match");
-      setTimeout(function(){
-        game.flippedCards[0].flipped = false;
-        game.flippedCards[1].flipped = false;
-        game.flippedCards = [];
-        game.guesses++;
-      }, 1000);
-    }
-  }
-};
-
 Vue.component("game-card", {
   props: ['card'],
   template: `
-    <div class="card" :id="card.id" @click="flipCard">
+    <div class="card" :class="{action: !this.card.locked}" :id="card.id" @click="flipCard">
       <div class="card-front" :class="{flip: !this.card.flipped}">
         <i :class="card.front"></i>
       </div>
@@ -32,21 +12,42 @@ Vue.component("game-card", {
   `,
   methods:{
     flipCard: function(){
-      if(!this.card.locked){
+      if(!this.card.locked && game.flippedCards.length < 2){
         this.card.flipped = !this.card.flipped;
+        this.card.locked = true;
         game.flippedCards.push(this.card);
-        checkMatch();
+        game.checkMatch();
       }
     }
   }
 });
 
+Vue.component("game-over", {
+  props: ['guesses'],
+  template:`
+    <section class="modal-container">
+      <div class="modal-body">
+        <header>GAME OVER</header>
+        <main>
+          <p>You completed the game in {{guesses}} guesses!</p>
+        </main>
+        <footer>
+          <button @click="$emit('play-again')">Play Again</button>
+          <button @click="$emit('main-menu')">Main Menu</button>
+        </footer>
+      </div>
+    </section>
+  `
+});
+
 const game = new Vue({
   el: "#app",
   data: {
-    reset: false,
-    playing: false,
+    playGame: false,
+    gameOver: true,
+    replayGame: false,
     selectedLevel: "",
+    replayLevel: "",
     levels: [
       {text: "Easy", value: "easy"},
       {text: "Medium", value: "medium"},
@@ -330,14 +331,71 @@ const game = new Vue({
     },
     startGame: function(){
       if(!this.selectedLevel == ""){
-        this.playing = true;
+        this.playGame = true;
+        this.gameOver = false;
       } else {
         alert("Please select a difficulty");
       }
+      this.setCurrentLevel();
+    },
+    setCurrentLevel: function(){
+      switch(this.selectedLevel){
+        case "easy":
+          this.replayLevel = "easy";
+          break;
+        case "medium":
+          this.replayLevel = "medium" ;
+          break;
+        case "hard":
+          this.replayLevel = "hard";
+          break;
+        default:
+          this.replayLevel = "";
+      }
+    },
+    checkMatch: function(){
+      if(this.flippedCards.length === 2){
+        if(this.flippedCards[0].id !== this.flippedCards[1].id && this.flippedCards[0].front === this.flippedCards[1].front){
+          console.log("Match");
+          this.flippedCards = [];
+          this.guesses++;
+        } else {
+          console.log("Not a match");
+          setTimeout(function(){
+            this.flippedCards[0].flipped = false;
+            this.flippedCards[0].locked = false;
+            this.flippedCards[1].flipped = false;
+            this.flippedCards[1].locked = false;
+            this.flippedCards = [];
+            this.guesses++;
+          }.bind(this), 750);
+        }
+      }
+      this.checkGameOver();
+    },
+    checkGameOver: function(){
+      let counter = 0;
+      for(let i=0; i<this.filteredCards.length; i++){
+        if(this.filteredCards[i].locked){
+          counter++;
+        };
+      };
+      if(counter === this.filteredCards.length){
+        setTimeout(function(){
+          this.gameOver = true;
+        }.bind(this), 750);
+      };
     },
     quitGame: function(){
-      this.playing = false;
+      this.playGame = false;
+      this.replayGame = false;
       this.resetGame();
+    },
+    playAgain: function(){
+      this.resetGame();
+      this.replayGame = true;
+      this.gameOver = false;
+      this.selectedLevel = this.replayLevel;
     }
   }
 });
