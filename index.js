@@ -35,16 +35,17 @@ Vue.component("game-card", {
       if(!this.card.locked){
         this.card.flipped = !this.card.flipped;
         game.flippedCards.push(this.card);
-        console.log(this.card.id, this.card.altFront, this.card.flipped);
         checkMatch();
       }
-    },
+    }
   }
 });
 
 const game = new Vue({
-  el: "#game",
+  el: "#app",
   data: {
+    reset: false,
+    playing: false,
     selectedLevel: "",
     levels: [
       {text: "Easy", value: "easy"},
@@ -318,6 +319,25 @@ const game = new Vue({
         this.cards[index] = temp;
       }
       return this.cards;
+    },
+    resetGame: function(){
+      for(let i=0; i<this.filteredCards.length; i++){
+        this.filteredCards[i].locked = false;
+        this.filteredCards[i].flipped = false;
+      };
+      this.guesses = 0;
+      this.selectedLevel = "";
+    },
+    startGame: function(){
+      if(!this.selectedLevel == ""){
+        this.playing = true;
+      } else {
+        alert("Please select a difficulty");
+      }
+    },
+    quitGame: function(){
+      this.playing = false;
+      this.resetGame();
     }
   }
 });
