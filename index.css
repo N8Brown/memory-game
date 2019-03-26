@@ -76,6 +76,14 @@ body {
   font-size: 3.5rem;
 }
 
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
 .flip{
   transform: rotateY(180deg);
 }
