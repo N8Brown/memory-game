@@ -5,18 +5,20 @@ const checkMatch = () => {
       game.flippedCards[0].locked = true;
       game.flippedCards[1].locked = true;
       game.flippedCards = [];
+      game.guesses++;
     } else {
       console.log("Not a match");
       setTimeout(function(){
         game.flippedCards[0].flipped = false;
         game.flippedCards[1].flipped = false;
         game.flippedCards = [];
+        game.guesses++;
       }, 1000);
     }
   }
 };
 
-Vue.component("card-easy", {
+Vue.component("game-card", {
   props: ['card'],
   template: `
     <div class="card" :id="card.id" @click="flipCard">
@@ -33,23 +35,24 @@ Vue.component("card-easy", {
       if(!this.card.locked){
         this.card.flipped = !this.card.flipped;
         game.flippedCards.push(this.card);
-        console.log(this.card.id, this.card.altFront, this.card.flipped);
         checkMatch();
       }
-    },
+    }
   }
 });
 
 const game = new Vue({
-  el: "#game",
+  el: "#app",
   data: {
+    reset: false,
+    playing: false,
     selectedLevel: "",
     levels: [
       {text: "Easy", value: "easy"},
       {text: "Medium", value: "medium"},
       {text: "Hard", value: "hard"}
     ],
-    moves: 0,
+    guesses: 0,
     flippedCards: [],
     cards: [
       {
@@ -316,6 +319,25 @@ const game = new Vue({
         this.cards[index] = temp;
       }
       return this.cards;
+    },
+    resetGame: function(){
+      for(let i=0; i<this.filteredCards.length; i++){
+        this.filteredCards[i].locked = false;
+        this.filteredCards[i].flipped = false;
+      };
+      this.guesses = 0;
+      this.selectedLevel = "";
+    },
+    startGame: function(){
+      if(!this.selectedLevel == ""){
+        this.playing = true;
+      } else {
+        alert("Please select a difficulty");
+      }
+    },
+    quitGame: function(){
+      this.playing = false;
+      this.resetGame();
     }
   }
 });

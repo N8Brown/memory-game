@@ -9,18 +9,42 @@
   <title>Memory Game</title>
 </head>
 <body>
-  <div id="game">
-    <div class="options">
-      <label for="difficulty">Difficulty: </label>
-      <select name="difficulty" id="difficulty" v-model="selectedLevel">
-       <option v-for="option in levels" v-bind:value="option.value">
-            {{ option.text }}
-       </option>
-      </select>
-    </div>
-    <div id="game-board" :class="selectedLevel">
-      <card-easy v-for="card in filteredCards" :card="card" :key="card.id" ></card-easy>
-    </div>
+  <div id="app">
+    <section id="main-menu" v-if="!playing">
+      <header>
+        <h1>MEMORY</h1>
+        <h2>Web Developer Edition</h2>
+      </header>
+      <main>
+        <div class="options">
+          <label for="difficulty">Difficulty: </label>
+          <select name="difficulty" id="difficulty" v-model="selectedLevel">
+            <option v-for="option in levels" v-bind:value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <button @click="startGame">Start Game</button>
+        </div>
+      </main>
+      <footer>
+        <p>Created By: Nathan Brown </p>
+        <p>2019</p>
+      </footer>
+    </section>
+
+    <section id="game" v-if="playing">
+      <header>
+        <h2>Guesses: {{guesses}}</h2>
+      </header>
+      <main id="game-board" :class="selectedLevel">
+        <game-card v-for="card in filteredCards" :card="card" :key="card.id" ></game-card>
+      </main>
+      <footer>
+        <button v-if="playing" @click="quitGame">Quit Game</button>
+      </footer>
+    </section>
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
