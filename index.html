@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="app">
-    <section id="main-menu" v-if="!playing">
+    <section id="main-menu" v-if="!playGame">
       <header>
         <h1>MEMORY</h1>
         <h2>Web Developer Edition</h2>
@@ -34,15 +34,16 @@
       </footer>
     </section>
 
-    <section id="game" v-if="playing">
+    <section id="game" v-if="playGame">
       <header>
         <h2>Guesses: {{guesses}}</h2>
       </header>
       <main id="game-board" :class="selectedLevel">
         <game-card v-for="card in filteredCards" :card="card" :key="card.id" ></game-card>
+        <game-over :guesses="guesses" v-if="gameOver" v-on:play-again="playAgain" v-on:main-menu="quitGame"></game-over>
       </main>
       <footer>
-        <button v-if="playing" @click="quitGame">Quit Game</button>
+        <button @click="quitGame">Quit Game</button>
       </footer>
     </section>
   </div>
