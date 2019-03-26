@@ -10,16 +10,22 @@
 </head>
 <body>
   <div id="game">
-    <div class="options">
-      <label for="difficulty">Difficulty: </label>
-      <select name="difficulty" id="difficulty" v-model="selectedLevel">
-       <option v-for="option in levels" v-bind:value="option.value">
-            {{ option.text }}
-       </option>
-      </select>
-    </div>
+    <header>
+      <h1>WEB DEVELOPER MEMORY</h1>
+      <div class="options">
+        <label for="difficulty">Difficulty: </label>
+        <select name="difficulty" id="difficulty" v-model="selectedLevel">
+          <option v-for="option in levels" v-bind:value="option.value">
+              {{ option.text }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <p>Guesses: {{guesses}}</p>
+      </div>
+    </header>
     <div id="game-board" :class="selectedLevel">
-      <card-easy v-for="card in filteredCards" :card="card" :key="card.id" ></card-easy>
+      <game-card v-for="card in filteredCards" :card="card" :key="card.id" ></game-card>
     </div>
   </div>
 </body>

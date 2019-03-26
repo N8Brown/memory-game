@@ -5,18 +5,20 @@ const checkMatch = () => {
       game.flippedCards[0].locked = true;
       game.flippedCards[1].locked = true;
       game.flippedCards = [];
+      game.guesses++;
     } else {
       console.log("Not a match");
       setTimeout(function(){
         game.flippedCards[0].flipped = false;
         game.flippedCards[1].flipped = false;
         game.flippedCards = [];
+        game.guesses++;
       }, 1000);
     }
   }
 };
 
-Vue.component("card-easy", {
+Vue.component("game-card", {
   props: ['card'],
   template: `
     <div class="card" :id="card.id" @click="flipCard">
@@ -49,7 +51,7 @@ const game = new Vue({
       {text: "Medium", value: "medium"},
       {text: "Hard", value: "hard"}
     ],
-    moves: 0,
+    guesses: 0,
     flippedCards: [],
     cards: [
       {
