@@ -1,5 +1,5 @@
 Vue.component("game-card", {
-  props: ['card'],
+  props: ["card"],
   template: `
     <div class="card" :class="{action: !this.card.locked}" :id="card.id" @click="flipCard">
       <div class="card-front" :class="{flip: !this.card.flipped}">
@@ -10,9 +10,9 @@ Vue.component("game-card", {
       </div>
     </div>
   `,
-  methods:{
-    flipCard: function(){
-      if(!this.card.locked && game.flippedCards.length < 2){
+  methods: {
+    flipCard: function() {
+      if (!this.card.locked && game.flippedCards.length < 2) {
         this.card.flipped = !this.card.flipped;
         this.card.locked = true;
         game.flippedCards.push(this.card);
@@ -23,11 +23,13 @@ Vue.component("game-card", {
 });
 
 Vue.component("game-over", {
-  props: ['guesses'],
-  template:`
+  props: ["guesses"],
+  template: `
     <section class="modal-container">
       <div class="modal-body">
-        <header>GAME OVER</header>
+        <header>
+          <h2>GAME OVER</h2>
+        </header>
         <main>
           <p>You completed the game in {{guesses}} guesses!</p>
         </main>
@@ -49,9 +51,9 @@ const game = new Vue({
     selectedLevel: "",
     replayLevel: "",
     levels: [
-      {text: "Easy", value: "easy"},
-      {text: "Medium", value: "medium"},
-      {text: "Hard", value: "hard"}
+      { text: "Easy", value: "easy" },
+      { text: "Medium", value: "medium" },
+      { text: "Hard", value: "hard" }
     ],
     guesses: 0,
     flippedCards: [],
@@ -64,7 +66,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 2,
@@ -74,7 +76,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 3,
@@ -84,7 +86,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 4,
@@ -94,7 +96,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 5,
@@ -104,7 +106,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 6,
@@ -114,7 +116,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 7,
@@ -124,7 +126,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 8,
@@ -134,7 +136,7 @@ const game = new Vue({
         locked: false,
         easy: true,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 9,
@@ -144,7 +146,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 10,
@@ -154,7 +156,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 11,
@@ -164,7 +166,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 12,
@@ -174,7 +176,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 13,
@@ -184,7 +186,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 14,
@@ -194,7 +196,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 15,
@@ -204,7 +206,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 16,
@@ -214,7 +216,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: true,
-        hard: true,
+        hard: true
       },
       {
         id: 17,
@@ -224,7 +226,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 18,
@@ -234,7 +236,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 19,
@@ -244,7 +246,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 20,
@@ -254,7 +256,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 21,
@@ -264,7 +266,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 22,
@@ -274,7 +276,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 23,
@@ -284,7 +286,7 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
+        hard: true
       },
       {
         id: 24,
@@ -294,25 +296,25 @@ const game = new Vue({
         locked: false,
         easy: false,
         medium: false,
-        hard: true,
-      },
+        hard: true
+      }
     ]
   },
   computed: {
-    filteredCards: function(){
+    filteredCards: function() {
       this.shuffleCards();
       return this.cards.filter(card => {
-        return (card[this.selectedLevel]);
+        return card[this.selectedLevel];
       });
     }
   },
   methods: {
-    shuffleCards: function(){
+    shuffleCards: function() {
       let ctr = this.cards.length;
       let index;
       let temp;
 
-      while(ctr > 0){
+      while (ctr > 0) {
         index = Math.floor(Math.random() * ctr);
         ctr--;
         temp = this.cards[ctr];
@@ -321,16 +323,16 @@ const game = new Vue({
       }
       return this.cards;
     },
-    resetGame: function(){
-      for(let i=0; i<this.filteredCards.length; i++){
+    resetGame: function() {
+      for (let i = 0; i < this.filteredCards.length; i++) {
         this.filteredCards[i].locked = false;
         this.filteredCards[i].flipped = false;
-      };
+      }
       this.guesses = 0;
       this.selectedLevel = "";
     },
-    startGame: function(){
-      if(!this.selectedLevel == ""){
+    startGame: function() {
+      if (!this.selectedLevel == "") {
         this.playGame = true;
         this.gameOver = false;
       } else {
@@ -338,13 +340,13 @@ const game = new Vue({
       }
       this.setCurrentLevel();
     },
-    setCurrentLevel: function(){
-      switch(this.selectedLevel){
+    setCurrentLevel: function() {
+      switch (this.selectedLevel) {
         case "easy":
           this.replayLevel = "easy";
           break;
         case "medium":
-          this.replayLevel = "medium" ;
+          this.replayLevel = "medium";
           break;
         case "hard":
           this.replayLevel = "hard";
@@ -353,45 +355,54 @@ const game = new Vue({
           this.replayLevel = "";
       }
     },
-    checkMatch: function(){
-      if(this.flippedCards.length === 2){
-        if(this.flippedCards[0].id !== this.flippedCards[1].id && this.flippedCards[0].front === this.flippedCards[1].front){
+    checkMatch: function() {
+      if (this.flippedCards.length === 2) {
+        if (
+          this.flippedCards[0].id !== this.flippedCards[1].id &&
+          this.flippedCards[0].front === this.flippedCards[1].front
+        ) {
           console.log("Match");
           this.flippedCards = [];
           this.guesses++;
         } else {
           console.log("Not a match");
-          setTimeout(function(){
-            this.flippedCards[0].flipped = false;
-            this.flippedCards[0].locked = false;
-            this.flippedCards[1].flipped = false;
-            this.flippedCards[1].locked = false;
-            this.flippedCards = [];
-            this.guesses++;
-          }.bind(this), 750);
+          setTimeout(
+            function() {
+              this.flippedCards[0].flipped = false;
+              this.flippedCards[0].locked = false;
+              this.flippedCards[1].flipped = false;
+              this.flippedCards[1].locked = false;
+              this.flippedCards = [];
+              this.guesses++;
+            }.bind(this),
+            750
+          );
         }
       }
       this.checkGameOver();
     },
-    checkGameOver: function(){
+    checkGameOver: function() {
       let counter = 0;
-      for(let i=0; i<this.filteredCards.length; i++){
-        if(this.filteredCards[i].locked){
+      for (let i = 0; i < this.filteredCards.length; i++) {
+        if (this.filteredCards[i].locked) {
           counter++;
-        };
-      };
-      if(counter === this.filteredCards.length){
-        setTimeout(function(){
-          this.gameOver = true;
-        }.bind(this), 750);
-      };
+        }
+      }
+      if (counter === this.filteredCards.length) {
+        setTimeout(
+          function() {
+            this.gameOver = true;
+          }.bind(this),
+          750
+        );
+      }
     },
-    quitGame: function(){
+    quitGame: function() {
       this.playGame = false;
       this.replayGame = false;
       this.resetGame();
     },
-    playAgain: function(){
+    playAgain: function() {
       this.resetGame();
       this.replayGame = true;
       this.gameOver = false;
