@@ -149,6 +149,7 @@ select {
 
 .flip {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 /* MODAL */
