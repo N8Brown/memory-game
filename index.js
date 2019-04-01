@@ -393,7 +393,7 @@ const game = new Vue({
           function() {
             this.gameOver = true;
           }.bind(this),
-          750
+          500
         );
       }
     },
