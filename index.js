@@ -2,10 +2,10 @@ Vue.component("game-card", {
   props: ["card"],
   template: `
     <div class="card" :class="{action: !this.card.locked}" :id="card.id" @click="flipCard">
-      <div class="card-front" :class="{flip: !this.card.flipped}">
+      <div class="card-front" :class="{flip: this.card.flipped}">
         <i :class="card.front"></i>
       </div>
-      <div class="card-back" :class="{flip: this.card.flipped}">
+      <div class="card-back" :class="{flip: !this.card.flipped}">
         <i :class="card.back"></i>
       </div>
     </div>
