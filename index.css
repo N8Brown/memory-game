@@ -122,19 +122,15 @@ select {
 .card {
   position: relative;
   border-radius: 5px;
-  /* transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  transform-style: preserve-3d;
-  backface-visibility: hidden; */
 }
 
-/* .action:hover {
+.action:hover {
   transform: scale(1.02);
 }
 
 .action:active {
   transform: scale(0.98);
-} */
+}
 
 .card-front,
 .card-back {
@@ -143,13 +139,7 @@ select {
 }
 
 .card-front {
-  /* background: var(--vue-green); */
   background: radial-gradient(rgb(255, 255, 255) 40%, rgb(65, 184, 131));
-  /* transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden; */
 }
 
 .card-back {
