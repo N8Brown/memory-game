@@ -122,10 +122,10 @@ select {
 .card {
   position: relative;
   border-radius: 5px;
-  transform: rotateY(180deg);
+  /* transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   transform-style: preserve-3d;
-  backface-visibility: hidden;
+  backface-visibility: hidden; */
 }
 
 /* .action:hover {
@@ -143,8 +143,13 @@ select {
 }
 
 .card-front {
-  background: var(--vue-green);
+  /* background: var(--vue-green); */
   background: radial-gradient(rgb(255, 255, 255) 40%, rgb(65, 184, 131));
+  /* transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; */
 }
 
 .card-back {
@@ -157,7 +162,7 @@ select {
   -webkit-transform: rotateY(180deg);
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  z-index: 1;
+  -webkit-backface-visibility: hidden;
 }
 
 /* MODAL */
